@@ -7,7 +7,16 @@
 <body>
 <h1>Personal information</h1>
 <div>
-    <p th:text="${item}"></p>
+    Name: <p th:text="${item.getName()}"></p><br>
+</div>
+<div>
+    Surname: <p th:text="${item.getSurname()}"></p><br>
+</div>
+<div>
+    Age: <p th:text="${item.getAge()}"></p><br>
+</div>
+<div>
+    Number: <p th:text="${item.getNumber()}"></p><br>
 </div>
 </body>
 </html>
