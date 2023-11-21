@@ -1,6 +1,12 @@
 package com.example.petproject.controllers;
 
+import com.example.petproject.models.UserModel;
+import com.example.petproject.repositorys.UserRep;
+import com.example.petproject.servises.UserServise;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,8 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 public class UserController {
 
-    @GetMapping("/{id}")
-    public String UserInformation(@PathVariable int id){
+    @Autowired
+    UserRep userRep;
+
+    @GetMapping
+    public String UserInformation(Authentication authentication, Model model){
+        UserModel userAuth = userRep.findByUsername(authentication.getName());
+        new UserServise().sendInfAboutUser(model, userAuth);
         return "UserInformation";
     }
 }

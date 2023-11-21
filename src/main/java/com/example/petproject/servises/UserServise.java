@@ -5,6 +5,7 @@ import com.example.petproject.repositorys.UserRep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 @Service
 public class UserServise {
@@ -22,5 +23,9 @@ public class UserServise {
         newUser.setNumber(number);
         newUser.setRole("User");
         userRep.save(newUser);
+    }
+
+    public void sendInfAboutUser(Model model, UserModel user){
+        model.addAttribute("item", user);
     }
 }
