@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -17,6 +17,11 @@
 </div>
 <div>
     Number: <p th:text="${item.getNumber()}"></p><br>
+</div>
+<div>
+<sec:authorize accesskey="hasRole('Admin')">
+role: <p th:text="${item.getRole}"></p>
+</sec:authorize>
 </div>
 </body>
 </html>
